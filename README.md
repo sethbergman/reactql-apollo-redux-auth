@@ -1,5 +1,7 @@
 # Users, sessions and auth
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/sethbergman/reactql-apollo-redux-auth.svg)](https://greenkeeper.io/)
+
 This ReactQL project demonstrates one possible way you might implement user/password authorisation.
 
 It also adds [Passport.js](http://passportjs.org/) with a sample Facebook login.
