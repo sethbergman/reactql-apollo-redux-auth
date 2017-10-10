@@ -1,0 +1,15 @@
+version: '2.1'
+
+services:
+  reactql-apollo-redux-auth:
+    image: reactql-apollo-redux-auth
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 4000:8080
+      - 9229:9229
+    volumes:
+      - .:/usr/src/app
+    ## set your startup file here
+    command: node --inspect app.js

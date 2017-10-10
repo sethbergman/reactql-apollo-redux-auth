@@ -1,38 +1,26 @@
-FROM debian:jessie-slim
+# Dockerfile
+FROM node:8.5.0
 
-ENV EPHIMERAL_PACKAGES "build-essential dh-autoreconf curl xz-utils python"
-ENV PACKAGES "libpng-dev"
+ENV IN_DOCKER true
 
-# Add `package.json` to build Debian compatible NPM packages
-WORKDIR /src
-ADD package.json .
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-# install everything (and clean up afterwards)
-RUN apt-get update \
-  && apt-get install -y apt-utils \
-  && apt-get install -y ${EPHIMERAL_PACKAGES} ${PACKAGES} \
-  && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
-  && apt-get install -y nodejs \
-  && cd /src \
-  && npm i \
-  ; apt-get remove --purge -y ${EPHIMERAL_PACKAGES} \
-  ; apt-get autoremove -y ${EPHIMERAL_PACKAGES} \
-  ; apt-get clean \
-  ; apt-get autoclean \
-  ; echo -n > /var/lib/apt/extended_states \
-  ; rm -rf /var/lib/apt/lists/* \
-  ; rm -rf /usr/share/man/?? \
-  ; rm -rf /usr/share/man/??_*
+# Install app dependencies
+COPY package.json /usr/src/app/
+COPY yarn.lock /usr/src/app/
+RUN yarn install --no-progress
 
-# Add the remaining project files
-ADD . .
+# Bundle app source
+COPY . /usr/src/app
 
-# Build distribution
-RUN npm run build
-
-# Set the default host/port
 ENV HOST 0.0.0.0
 ENV PORT 4000
 
-# Start the server by default
-CMD npm run server
+EXPOSE 80
+
+RUN [ "npm" "run" "build" ]
+
+ENTRYPOINT [ "package.json" ]
+CMD [ "npm run build" ]

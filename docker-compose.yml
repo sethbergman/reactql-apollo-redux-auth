@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  reactql-apollo-redux-auth:
+    image: reactql-apollo-redux-auth
+    build: .
+    ports:
+      - 4000:8080

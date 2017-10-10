@@ -25,9 +25,11 @@ const Html = ({ head, scripts, window, css, children }) => (
       <script
         dangerouslySetInnerHTML={{
           __html: Object.keys(window).reduce(
-            (out, key) => out += `window.${key}=${JSON.stringify(window[key])};`,
-            ''),
-        }} />
+            (out, key) => (out += `window.${key}=${JSON.stringify(window[key])};`),
+            '',
+          ),
+        }}
+      />
       {scripts.map(src => <script key={src} src={src} />)}
     </body>
   </html>

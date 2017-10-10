@@ -1,4 +1,3 @@
-/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 
 // Server-side production web server.  Generates a `dist/server.js` file that
 // can be run with `npm run server`
@@ -52,9 +51,7 @@ export default new WebpackConfig().extend({
   },
 
   plugins: [
-    webpackProgress(
-      `${chalk.magenta.bold('ReactQL server bundle')} in ${chalk.bgMagenta.white.bold('production mode')}`,
-    ),
+    webpackProgress(`${chalk.magenta.bold('ReactQL server bundle')} in ${chalk.bgMagenta.white.bold('production mode')}`),
 
     // Global variables
     new webpack.DefinePlugin({
