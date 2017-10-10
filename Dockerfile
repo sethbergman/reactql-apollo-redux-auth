@@ -20,7 +20,7 @@ ENV PORT 4000
 
 EXPOSE 80
 
-RUN [ "npm" "run" "build" ]
+RUN npm run build
 
 ENTRYPOINT [ "package.json" ]
 CMD [ "npm" "run" "server" ]
