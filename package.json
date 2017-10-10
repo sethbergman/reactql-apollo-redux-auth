@@ -1,5 +1,5 @@
 {
-  "name": "auth",
+  "name": "reactql-apollo-redux-auth",
   "version": "2.3.0",
   "description": "Users, sessions and auth",
   "license": "MIT",
@@ -120,5 +120,8 @@
   "engines": {
     "node": ">=7",
     "npm": ">=4"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/sethbergman/reactql-apollo-redux-auth.git",
+  "author": "Seth Bergman <seth.atxwebs@gmail.com>"
 }

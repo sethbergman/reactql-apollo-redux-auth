@@ -23,4 +23,4 @@ EXPOSE 80
 RUN [ "npm" "run" "build" ]
 
 ENTRYPOINT [ "package.json" ]
-CMD [ "npm run build" ]
+CMD [ "npm" "run" "server" ]
